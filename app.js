@@ -37,18 +37,18 @@ let currentIndex = 0;
 for (let i = 0; i < slidesArray.length; i++) {
   const slide = document.createElement('div');
   slide.classList.add('slide');
-  slide.innerHTML = `<img src="${slidesArray[i].item}" alt="">`; //html comune ai due tipi di slide
+  slide.innerHTML = `<img src="${slidesArray[i].item}" alt="">`; 
 
   if (currentIndex === i) {
     slide.classList.add('active');
   }
 
-  slideList.append(slide.cloneNode(true)); //clono "slide" perché si può usare append una volta sola
+  slideList.append(slide.cloneNode(true)); 
 
   slide.innerHTML += `<div class="slide_info">
       <h2 class="slide_title">${slidesArray[i].title}</h2>
       <p class="slide_desc">${slidesArray[i].text}</p>
-   </div>`; // aggiunta html appartenente solo a mainSlide
+   </div>`;
 
   mainSlide.append(slide);
 }
