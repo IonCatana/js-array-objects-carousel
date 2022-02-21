@@ -34,24 +34,24 @@ const slideList = document.querySelector('.slide-list');
 let currentIndex = 0;
 
 // Ciclo creazione slides
-for (let i = 0; i < slidesArray.length; i++) {
+slidesArray.forEach((el, i) => {
   const slide = document.createElement('div');
   slide.classList.add('slide');
-  slide.innerHTML = `<img src="${slidesArray[i].item}" alt="">`; 
+  slide.innerHTML = `<img src="${el.item}" alt="">`;
 
   if (currentIndex === i) {
     slide.classList.add('active');
   }
 
-  slideList.append(slide.cloneNode(true)); 
+  slideList.append(slide.cloneNode(true));
 
   slide.innerHTML += `<div class="slide_info">
-      <h2 class="slide_title">${slidesArray[i].title}</h2>
-      <p class="slide_desc">${slidesArray[i].text}</p>
-   </div>`;
+      <h2 class="slide_title">${el.title}</h2>
+      <p class="slide_desc">${el.text}</p>
+   </div>`; // aggiunta html appartenente solo a mainSlide
 
   mainSlide.append(slide);
-}
+});
 
 // Salvo le slide create precedentemente in due array per manipolarne le classi
 const slides = document.querySelectorAll('.main-slide .slide');
