@@ -1,15 +1,13 @@
-/* Regole di resset */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-/* Section */
-section {
-  padding-top: 40px;
-  margin: 0 auto;
-  width: 80vw;
+
+body {
+  padding: 100px;
 }
+
 img {
   display: block;
   width: 100%;
@@ -17,36 +15,31 @@ img {
   object-fit: cover;
   object-position: center;
 }
-.container {
-  border-radius: 20px;
-  overflow: hidden;
-  min-height: 500px;
-}
-/* Row */
+
 .row {
   display: flex;
-  height: 500px;
 }
+
 .col-10 {
   width: calc(100% / 12 * 10);
+  aspect-ratio: 7 / 3;
 }
+
 .col-2 {
   width: calc(100% / 12 * 2);
 }
 
-/* Main slide */
-.main-slide {
-  height: 100%;
-}
 .main-slide .slide {
   position: relative;
+  width: 100%;
+  height: 100%;
   display: none;
 }
+
 .main-slide .slide.active {
   display: block;
 }
 
-/* Le slide */
 .slide_info {
   position: absolute;
   left: 0;
@@ -56,18 +49,22 @@ img {
   color: white;
   padding: 30px 20px;
 }
+
 .slide-menu {
   position: relative;
 }
+
 .slide-list {
   width: 100%;
   height: 100%;
 }
+
 .slide-menu .slide {
   width: 100%;
   height: 20%;
   position: relative;
 }
+
 .slide-menu .slide::after {
   content: '';
   display: block;
@@ -79,6 +76,7 @@ img {
   background-color: black;
   opacity: 0.6;
 }
+
 .slide-menu .slide.active::before {
   content: '';
   display: block;
@@ -87,13 +85,13 @@ img {
   right: 0;
   left: 0;
   bottom: 0;
-  border: 3px solid #838383;
+  border: 3px solid #cccccc;
 }
+
 .slide-menu .slide.active::after {
   opacity: 0;
 }
 
-/* Control Wrapper */
 .controls-wrapper {
   position: absolute;
   top: 10px;
@@ -104,6 +102,7 @@ img {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .control {
   width: 25px;
   aspect-ratio: 1 / 1;
@@ -115,4 +114,9 @@ img {
   align-items: center;
   cursor: pointer;
   user-select: none;
+}
+
+.control:hover {
+  background-color: white;
+  transform: scale(1.15);
 }
