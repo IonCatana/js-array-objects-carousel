@@ -1,48 +1,54 @@
-// La variabile title
-const title = ['Svezia', 'Svizzera', 'Gran Bretagna', 'Germania', 'Paradise'];
-
-// La variabile items
-const items = [
-  'img/01.jpg',
-  'img/02.jpg',
-  'img/03.jpg',
-  'img/04.jpg',
-  'img/05.jpg',
+const slidesArray = [
+  {
+    item: 'img/01.jpg',
+    title: 'Svezia',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
+  },
+  {
+    item: 'img/02.jpg',
+    title: 'Svizzera',
+    text: 'Lorem ipsum',
+  },
+  {
+    item: 'img/03.jpg',
+    title: 'Gran Bretagna',
+    text: 'Lorem ipssum, dolor sit amet consectetur adipisicing elit.',
+  },
+  {
+    item: 'img/04.jpg',
+    title: 'Germania',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
+  },
+  {
+    item: 'img/05.jpg',
+    title: 'Paradise',
+    text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
+  },
 ];
-// La variabile text
-const text = [
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
-  'Lorem ipsum',
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
-  'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
-];
-console.log(title, items, text);
 
 // Richiamo nelle variabile gli slide-wrapper
 const mainSlide = document.querySelector('.main-slide');
 const slideList = document.querySelector('.slide-list');
-console.log(mainSlide, slideList);
 
 // Indice slide selezionata attualmente
 let currentIndex = 0;
 
 // Ciclo creazione slides
-for (let i = 0; i < items.length; i++) {
+for (let i = 0; i < slidesArray.length; i++) {
   const slide = document.createElement('div');
   slide.classList.add('slide');
-  slide.innerHTML = `<img src="${items[i]}" alt="">`;
+  slide.innerHTML = `<img src="${slidesArray[i].item}" alt="">`; //html comune ai due tipi di slide
 
   if (currentIndex === i) {
     slide.classList.add('active');
   }
 
-  slideList.append(slide.cloneNode(true));
+  slideList.append(slide.cloneNode(true)); //clono "slide" perché si può usare append una volta sola
 
   slide.innerHTML += `<div class="slide_info">
-      <h2 class="slide_title">${title[i]}</h2>
-      <p class="slide_desc">${text[i]}</p>
-   </div>`;
+      <h2 class="slide_title">${slidesArray[i].title}</h2>
+      <p class="slide_desc">${slidesArray[i].text}</p>
+   </div>`; // aggiunta html appartenente solo a mainSlide
 
   mainSlide.append(slide);
 }
@@ -54,15 +60,14 @@ const slidesSmall = document.querySelectorAll('.slide-list .slide');
 // Richiamo nelle variabili i controlli
 const arrowUp = document.querySelector('.arrow-up');
 const arrowDown = document.querySelector('.arrow-down');
-console.log(arrowUp, arrowDown);
 
-// Arrow Up
+// Freccia in alto
 arrowUp.addEventListener('click', function () {
   slides[currentIndex].classList.remove('active');
   slidesSmall[currentIndex].classList.remove('active');
 
   if (currentIndex <= 0) {
-    currentIndex = items.length - 1;
+    currentIndex = slidesArray.length - 1;
   } else {
     currentIndex--;
   }
@@ -71,12 +76,12 @@ arrowUp.addEventListener('click', function () {
   slidesSmall[currentIndex].classList.add('active');
 });
 
-// Arrow Down
+// Freccia in basso
 arrowDown.addEventListener('click', function () {
   slides[currentIndex].classList.remove('active');
   slidesSmall[currentIndex].classList.remove('active');
 
-  if (currentIndex >= items.length - 1) {
+  if (currentIndex >= slidesArray.length - 1) {
     currentIndex = 0;
   } else {
     currentIndex++;
